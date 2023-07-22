@@ -1,0 +1,198 @@
+package calculator;
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+
+public class calculator implements ActionListener{
+    JFrame frame=new JFrame();
+    JPanel panel=new JPanel();
+    JTextArea textarea=new JTextArea(2,10);
+    JButton button1=new JButton("1");
+    JButton button2=new JButton("2");
+    JButton button3=new JButton("3");
+    JButton button4=new JButton("4");
+    JButton button5=new JButton("5");
+    JButton button6=new JButton("6");
+    JButton button7=new JButton("7");
+    JButton button8=new JButton("8");
+    JButton button9=new JButton("9");
+    JButton button0=new JButton("0");
+    JButton add=new JButton("+");
+    JButton dot=new JButton(".");
+    JButton sub=new JButton("-");
+    JButton mul=new JButton("*");
+    JButton div=new JButton("/");
+    JButton clear=new JButton("clear");
+    JButton equal=new JButton("=");
+    double num1 ,num2,result;
+    char operator=' ';
+
+    int addition=0 , multiplication=0,division=0, substraction=0;
+        public calculator(){
+        frame.setSize(340,450);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setTitle("Fiza Calculator");
+        frame.setResizable(true);
+        frame.add(panel);
+        panel.setBackground(Color.white);
+        Border border=BorderFactory.createLineBorder(Color.red,4);
+        panel.add(textarea);
+        textarea.setBackground(Color.black);
+        Border tborder =BorderFactory.createLineBorder(Color.black,3);
+        textarea.setBorder(tborder);
+        Font font =new Font("arial" ,Font.BOLD,33);
+        textarea.setFont(font);
+        textarea.setForeground(Color.WHITE);
+        textarea.setPreferredSize(new Dimension(2,30));
+        textarea.setLineWrap(true);
+        button1.setPreferredSize(new Dimension(100,40));
+        button2.setPreferredSize(new Dimension(100,40));
+        button3.setPreferredSize(new Dimension(100,40));
+        button4.setPreferredSize(new Dimension(100,40));
+        button5.setPreferredSize(new Dimension(100,40));
+        button6.setPreferredSize(new Dimension(100,40));
+        button7.setPreferredSize(new Dimension(100,40));
+        button8.setPreferredSize(new Dimension(100,40));
+        button9.setPreferredSize(new Dimension(100,40));
+        button0.setPreferredSize(new Dimension(100,40));
+        dot.setPreferredSize(new Dimension(100,40));
+        add.setPreferredSize(new Dimension(100,40));
+        sub.setPreferredSize(new Dimension(100,40));
+        mul.setPreferredSize(new Dimension(100,40));
+        div.setPreferredSize(new Dimension(100,40));
+        clear.setPreferredSize(new Dimension(100,40));
+        equal.setPreferredSize(new Dimension(100,40));
+        panel.add(button1);
+       panel.add(button2);
+       panel.add(button3);
+       panel.add(button4);
+       panel.add(button5);
+       panel.add(button6);
+       panel.add(button7);
+       panel.add(button8);
+       panel.add(button9);
+       panel.add(button0);
+       panel.add(dot);
+       panel.add(mul);
+       panel.add(sub);
+       panel.add(div);
+       panel.add(add);
+       panel.add(clear);
+       panel.add(equal);
+       button1.addActionListener( this);
+       button2.addActionListener( this);
+       button3.addActionListener( this);
+       button4.addActionListener( this);
+       button5.addActionListener( this);
+       button6.addActionListener( this);
+       button7.addActionListener(this);
+       button8.addActionListener( this);
+       button9.addActionListener( this);
+       button0.addActionListener( this);
+       add.addActionListener( this);
+       sub.addActionListener(this);
+       mul.addActionListener( this);
+       div.addActionListener( this);
+       dot.addActionListener(this);
+       equal.addActionListener( this);
+       clear.addActionListener( this);
+       frame.setVisible(true);
+
+    }
+    public static void main(String args []){
+            new calculator();
+    }
+
+    public double number_reader() {
+        double number1;
+        String s;
+        s=textarea.getText();
+        number1=Double.valueOf(s);
+
+        return number1;
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source= e.getSource();
+//        num1=0.0;
+//        num2=0.0;
+
+        if(source==clear){
+            textarea.setText("");
+        }  if(source==button1){
+            textarea.append("1");
+        } if(source==button2){
+            textarea.append("2");
+        } if(source==button3){
+            textarea.append("3");
+        } if(source==button4){
+            textarea.append("4");
+        } if(source==button5){
+            textarea.append("5");
+        } if(source==button6){
+            textarea.append("6");
+        } if(source==button7){
+            textarea.append("7");
+        } if(source==button8){
+            textarea.append("8");
+        } if(source==button9){
+            textarea.append("9");
+        } if(source==button0){
+            textarea.append("0");
+        } if(source==dot){
+            textarea.append(".");
+        }
+        if(source==add){
+            num1=number_reader();
+//           num1= Double.valueOf(textarea.getText());
+            textarea.setText("+");
+            operator ='+';
+
+        } if(source==sub){
+             num1=number_reader();
+//            num1= Double.valueOf(textarea.getText());
+            textarea.setText("");
+            operator ='-';
+
+        }if(source==mul){
+            num1=number_reader();
+            textarea.setText("");
+            operator ='*';
+
+        }if(source==div){
+            num1=number_reader();
+            textarea.setText("");
+            operator ='/';
+
+        }if(source==equal){
+
+            num2=number_reader();
+            switch (operator){
+                case '+':
+                    result=num1+num2;
+                    break;
+                case '-':
+                    System.out.println(num1 +" "+num2);
+                    result=num1-num2;
+                    break;
+                case '*':
+                    result=num1*num2;
+                    break;
+                case '/':
+                    result=num1/num2;
+                    break;
+            }
+            textarea.setText(String.valueOf(result));
+            num1=result;
+
+        }
+    }
+}
+
